@@ -13,7 +13,7 @@ const Menuslogout = [
   { title: 'ออกจากระบบ', icon: <MdLogout />, link: '/LogoutTeacher' },
 ];
 
-const Sidebar = () => {
+const SidebarTeacher = () => {
   return (
     <div className="w-60 h-screen bg-red-900">
       <div className="justify-center mt-3 w-60">
@@ -50,4 +50,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default SidebarTeacher;

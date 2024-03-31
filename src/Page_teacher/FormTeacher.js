@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { FiPlusCircle } from "react-icons/fi";
+import SidebarTeacher from "./SidebarTeacher";
 
 const FormTeacher = () => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -22,6 +23,7 @@ const FormTeacher = () => {
 
 
   return (
+    
     <div className="bg-white h-screen w-screen items-center justify-center">
       <div>
         <h1 className='font-IBM font-bold text-black text-4xl mt-10 ml-10 '>แบบฟอร์มข้อมูลรายวิชา</h1>
@@ -46,6 +48,7 @@ const FormTeacher = () => {
               <th className="border border-black p-2 w-96">ชื่อวิชาภาษาอังกฤษ</th>
               <th className="border border-black p-2 w-96">ชื่อวิชาภาษาไทย</th>
               <th className="border border-black p-2 text-center">หน่วยกิต</th>
+              <th className="border border-black p-2 text-center">หมู่เรียน</th>
               <th className="border border-black p-2 text-center">เพิ่มรายวิชา</th>
             </tr>
           </thead>
@@ -53,7 +56,7 @@ const FormTeacher = () => {
             {tableData
               .filter((row) =>
                 row.subject_id.toString().toLowerCase().includes(searchQuery.trim().toLowerCase()) ||
-                row.subject_nameEN.toLowerCase().includes(searchQuery.trim().toLowerCase())||
+                row.subject_nameEN.toLowerCase().includes(searchQuery.trim().toLowerCase()) ||
                 row.subject_nameTH.toLowerCase().includes(searchQuery.trim().toLowerCase())
               )
               .map((row) => (
@@ -63,6 +66,9 @@ const FormTeacher = () => {
                   <td className="border border-black p-2">{row.subject_nameEN}</td>
                   <td className="border border-black p-2">{row.subject_nameTH}</td>
                   <td className="border border-black p-2">{row.credit}</td>
+                  <td className="border border-black p-2">
+                    {row.group === "1" ? "บรรยาย" : row.group === "2" ? "ปฏิบัติ" : ""}
+                  </td>
                   <td className="border border-black p-2">
                     <Link to={`/EditTeacher?subjectID=${row.subject_id}`} className="text-red-900 flex items-center justify-center">
                       <FiPlusCircle />
